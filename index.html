@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otgonjargal Murun | Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        header h1 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        header p.subtitle { font-size: 1.2rem; color: #64748b; margin-bottom: 1rem; }
+        header p.bio { max-width: 600px; margin: 0 auto; color: #475569; }
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .skill-tag {
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .project-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .project-card h3 { margin-bottom: 0.5rem; color: var(--primary-color); }
+        .project-card p { font-size: 0.95rem; color: #475569; margin-bottom: 1rem; }
+        .project-link {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .project-link:hover { background-color: #1d4ed8; }
+        footer { text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 3rem; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            section { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Otgonjargal Murun</h1>
+            <p class="subtitle">Computer Engineering Student @ Gachon University</p>
+            <p class="bio">Passionate software development student building accessible web applications, data-driven tools, and responsive digital experiences.</p>
+        </header>
+
+        <section>
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">Python / Data Science</span>
+                <span class="skill-tag">Git & GitHub</span>
+                <span class="skill-tag">Web Accessibility</span>
+                <span class="skill-tag">Machine Learning Basics</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Course Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Web Programming Repository</h3>
+                    <p>Web programming coursework and assignments built with HTML, CSS, and accessible web standards.</p>
+                    <a href="https://github.com/murun05/web-pro" class="project-link" target="_blank">View Repository</a>
+                </div>
+                </div>
+                <div class="project-card">
+                    <h3>Project Repository</h3>
+                    <p>Core software engineering project repository containing source code and implementation files.</p>
+                    <a href="https://github.com/murun05/project" class="project-link" target="_blank">View Repository</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Otgonjargal Murun. Created for Git & Version Control Course.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
