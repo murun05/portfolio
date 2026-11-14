@@ -3,130 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otgonjargal Murun | Portfolio</title>
+    <title>Otgonjargal Murun | Computer Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
+            --bg-main: #090d16;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --primary: #3b82f6;
+            --accent: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(56, 189, 248, 0.4);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 2rem 1rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 45%);
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        header {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
         }
-        header h1 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        header p.subtitle { font-size: 1.2rem; color: #64748b; margin-bottom: 1rem; }
-        header p.bio { max-width: 600px; margin: 0 auto; color: #475569; }
-        section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+
+        nav {
+            position: sticky;
+            top: 1rem;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0.85rem 1.75rem;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
         }
-        section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .skill-tag {
-            background-color: #eff6ff;
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        .project-card {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
-        .project-card h3 { margin-bottom: 0.5rem; color: var(--primary-color); }
-        .project-card p { font-size: 0.95rem; color: #475569; margin-bottom: 1rem; }
-        .project-link {
-            display: inline-block;
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
             text-decoration: none;
-            color: white;
-            background-color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: color 0.2s ease;
         }
-        .project-link:hover { background-color: #1d4ed8; }
-        footer { text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 3rem; }
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            section { padding: 1.25rem; }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 5.5rem 1rem 4.5rem;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 999px;
+            color: #67e8f9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22d3ee;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22d3ee;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p.subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #38bdf8;
+            margin-bottom: 1.25rem;
+        }
+
+        header p.bio {
+            max-width: 620px;
+            margin: 0 auto 2.25rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.8rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.45);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.8rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-hover), transparent);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 12px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.35rem;
+        }
+
+        .skill-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .folder-icon {
+            color: #38bdf8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .tech-tags span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #38bdf8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.2s ease, color 0.2s ease;
+        }
+
+        .project-link:hover {
+            gap: 0.8rem;
+            color: #7dd3fc;
+        }
+
+        /* Contact CTA Box */
+        .cta-box {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            font-size: 1.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-box p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 1.75rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                border-radius: 14px;
+                padding: 0.75rem 1.25rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            header {
+                padding: 3.5rem 0.5rem 3rem;
+            }
+            .project-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+      
+        <nav>
+            <a href="#" class="nav-logo">murun<span>.dev</span></a>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="https://github.com/murun05" target="_blank">GitHub ↗</a>
+            </div>
+        </nav>
+
         <header>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Computer Engineering @ Gachon University
+            </div>
             <h1>Otgonjargal Murun</h1>
-            <p class="subtitle">Computer Engineering Student @ Gachon University</p>
-            <p class="bio">Passionate software development student building accessible web applications, data-driven tools, and responsive digital experiences.</p>
+            <p class="subtitle">Software Developer & Data Science Enthusiast</p>
+            <p class="bio">
+                Passionate Computer Engineering undergraduate building accessible web applications, 
+                data-driven tools, and responsive digital experiences with clean, maintainable code.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">Explore Projects</a>
+                <a href="https://github.com/murun05" target="_blank" class="btn-secondary">GitHub Profile</a>
+            </div>
         </header>
 
-        <section>
-            <h2>Skills & Technologies</h2>
+        <section id="skills">
+            <div class="section-header">
+                <h2>Skills & Technologies</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="skills-grid">
-                <span class="skill-tag">HTML5 / CSS3</span>
-                <span class="skill-tag">JavaScript (ES6+)</span>
-                <span class="skill-tag">Python / Data Science</span>
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">Web Accessibility</span>
-                <span class="skill-tag">Machine Learning Basics</span>
+                <div class="skill-card">
+                    <div class="skill-title">HTML5 & CSS3</div>
+                    <div class="skill-desc">Semantic markup, responsive layouts, CSS Grid & Flexbox</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">JavaScript (ES6+)</div>
+                    <div class="skill-desc">Interactive DOM manipulation, async APIs & modern logic</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Python & Data Science</div>
+                    <div class="skill-desc">Regression modeling, data analysis & statistical evaluation</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Machine Learning</div>
+                    <div class="skill-desc">Predictive algorithms, model training & feature engineering</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Web Accessibility</div>
+                    <div class="skill-desc">WCAG standards, ARIA compliance & Lighthouse auditing</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Git & Version Control</div>
+                    <div class="skill-desc">Branching workflows, pull requests & GitHub collaboration</div>
+                </div>
             </div>
         </section>
 
-        <section>
-            <h2>Course Projects</h2>
+        <section id="projects">
+            <div class="section-header">
+                <h2>Course & Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>Web Programming Repository</h3>
-                    <p>Web programming coursework and assignments built with HTML, CSS, and accessible web standards.</p>
-                    <a href="https://github.com/murun05/web-pro" class="project-link" target="_blank">View Repository</a>
+                    <div>
+                        <div class="project-top">
+                            <span class="folder-icon">/web-pro</span>
+                        </div>
+                        <h3>Web Programming Repository</h3>
+                        <p>
+                            Web programming coursework and responsive applications built with pure HTML5, 
+                            native CSS3, and WCAG-compliant accessible web standards.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Accessibility</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/murun05/web-pro" class="project-link" target="_blank">
+                        View Repository <span>&rarr;</span>
+                    </a>
                 </div>
-                </div>
+
                 <div class="project-card">
-                    <h3>Project Repository</h3>
-                    <p>Core software engineering project repository containing source code and implementation files.</p>
-                    <a href="https://github.com/murun05/project" class="project-link" target="_blank">View Repository</a>
+                    <div>
+                        <div class="project-top">
+                            <span class="folder-icon">/project</span>
+                        </div>
+                        <h3>Software Engineering Project</h3>
+                        <p>
+                            Core software engineering project repository containing modular source code, 
+                            structured documentation, and full implementation files.
+                        </p>
+                        <div class="tech-tags">
+                            <span>Python</span>
+                            <span>Architecture</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/murun05/project" class="project-link" target="_blank">
+                        View Repository <span>&rarr;</span>
+                    </a>
                 </div>
             </div>
+        </section>
+
+        <section class="cta-box">
+            <h2>Let's Connect & Build Together</h2>
+            <p>
+                Always open to collaborating on software engineering projects, web development, or data science coursework.
+            </p>
+            <a href="https://github.com/murun05" target="_blank" class="btn-primary">Follow on GitHub</a>
         </section>
 
         <footer>
-            <p>&copy; 2026 Otgonjargal Murun. Created for Git & Version Control Course.</p>
+            <p>&copy; 2026 Otgonjargal Murun &bull; Built for Git & Version Control Course</p>
         </footer>
     </div>
 
