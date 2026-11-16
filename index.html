@@ -18,6 +18,8 @@
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(56, 189, 248, 0.4);
+            --success: #34d399;
+            --warning: #fbbf24;
         }
 
         * {
@@ -293,6 +295,32 @@
             color: var(--text-muted);
         }
 
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.25rem 0 1.5rem;
+        }
+
+        .filter-btn {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: var(--text-main);
+            border-color: var(--border-hover);
+            background: rgba(59, 130, 246, 0.12);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -394,6 +422,40 @@
             color: #7dd3fc;
         }
 
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.15rem 1.2rem;
+        }
+
+        .highlight-card .label {
+            display: inline-block;
+            color: var(--success);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
         .cta-box {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
             border: 1px solid var(--border);
@@ -472,20 +534,50 @@
             { value: '100%', label: 'Curiosity' }
         ];
 
+        const projectCategories = ['All', 'Web', 'React', 'Data'];
+
         const projects = [
             {
                 folder: '/web-pro',
                 title: 'Web Programming Repository',
                 description: 'Web programming coursework and responsive applications built with pure HTML5, native CSS3, and WCAG-compliant accessible web standards.',
                 tags: ['HTML5', 'CSS3', 'JavaScript', 'Accessibility'],
-                link: 'https://github.com/murun05/web-pro'
+                link: 'https://github.com/murun05/web-pro',
+                category: 'Web'
             },
             {
-                folder: '/react-ui',
-                title: 'Interactive Portfolio Components',
-                description: 'A React-focused showcase of reusable UI modules, clean interfaces, and responsive component-driven design for a modern portfolio experience.',
-                tags: ['React', 'UI/UX', 'Components', 'JavaScript'],
-                link: 'https://github.com/murun05'
+                folder: '/week11-task11',
+                title: 'Week 11 React Interface',
+                description: 'A React-based student directory app with reusable component cards, custom styling, and an elegant responsive layout for portfolio showcase.',
+                tags: ['React', 'Components', 'UI Design', 'JavaScript'],
+                link: 'https://github.com/murun05/week11-task11',
+                category: 'React'
+            },
+            {
+                folder: '/project',
+                title: 'Data-Driven Project',
+                description: 'A project focused on practical application, structured problem solving, and modern frontend tooling to turn ideas into interactive digital products.',
+                tags: ['TypeScript', 'UI', 'Architecture', 'Product'],
+                link: 'https://github.com/murun05/project',
+                category: 'Data'
+            }
+        ];
+
+        const highlights = [
+            {
+                label: 'Current focus',
+                title: 'Frontend + web applications',
+                detail: 'Building responsive interfaces with clear structure and user-friendly interaction patterns.'
+            },
+            {
+                label: 'Learning',
+                title: 'React and modern UI engineering',
+                detail: 'Improving reusable components, app state, and component-driven design thinking.'
+            },
+            {
+                label: 'Goal',
+                title: 'Portfolio that shows practical work',
+                detail: 'Turning course projects into a presentation-ready portfolio for future opportunities.'
             }
         ];
 
@@ -530,6 +622,13 @@
         }
 
         function App() {
+            const [activeFilter, setActiveFilter] = React.useState('All');
+
+            const filteredProjects =
+                activeFilter === 'All'
+                    ? projects
+                    : projects.filter((project) => project.category === activeFilter);
+
             return (
                 <div className="container">
                     <nav>
@@ -586,8 +685,22 @@
                             <h2>Course & Featured Projects</h2>
                             <div className="section-line"></div>
                         </div>
+
+                        <div className="filter-bar" aria-label="Project filters">
+                            {projectCategories.map((category) => (
+                                <button
+                                    key={category}
+                                    type="button"
+                                    className={category === activeFilter ? 'filter-btn active' : 'filter-btn'}
+                                    onClick={() => setActiveFilter(category)}
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+
                         <div className="projects-grid">
-                            {projects.map((project) => (
+                            {filteredProjects.map((project) => (
                                 <ProjectCard
                                     key={project.title}
                                     folder={project.folder}
@@ -596,6 +709,23 @@
                                     tags={project.tags}
                                     link={project.link}
                                 />
+                            ))}
+                        </div>
+                    </section>
+
+                    <section>
+                        <div className="section-header">
+                            <h2>Portfolio Highlights</h2>
+                            <div className="section-line"></div>
+                        </div>
+
+                        <div className="highlight-grid">
+                            {highlights.map((item) => (
+                                <div className="highlight-card" key={item.title}>
+                                    <span className="label">{item.label}</span>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.detail}</p>
+                                </div>
                             ))}
                         </div>
                     </section>
