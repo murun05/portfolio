@@ -36,7 +36,7 @@
             color: var(--text-main);
             line-height: 1.7;
             overflow-x: hidden;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
                 radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 45%);
         }
@@ -50,6 +50,10 @@
             background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         nav {
@@ -74,7 +78,6 @@
             font-weight: 700;
             font-size: 1rem;
             color: var(--text-main);
-            text-decoration: none;
             letter-spacing: -0.5px;
         }
 
@@ -90,7 +93,6 @@
 
         .nav-links a {
             color: var(--text-muted);
-            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
             transition: color 0.2s ease;
@@ -169,7 +171,6 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: #ffffff;
-            text-decoration: none;
             padding: 0.8rem 1.75rem;
             border-radius: 8px;
             font-weight: 600;
@@ -186,7 +187,6 @@
         .btn-secondary {
             background: var(--bg-card);
             color: var(--text-main);
-            text-decoration: none;
             padding: 0.8rem 1.75rem;
             border-radius: 8px;
             font-weight: 600;
@@ -200,7 +200,6 @@
             border-color: var(--border-hover);
         }
 
-        /* Section Styling */
         section {
             margin-bottom: 4rem;
         }
@@ -224,7 +223,44 @@
             background: linear-gradient(90deg, var(--border-hover), transparent);
         }
 
-        /* Skills Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+        }
+
+        .stat-card .value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card .label {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -257,7 +293,6 @@
             color: var(--text-muted);
         }
 
-        /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -348,7 +383,6 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            text-decoration: none;
             color: #38bdf8;
             font-weight: 600;
             font-size: 0.9rem;
@@ -360,7 +394,6 @@
             color: #7dd3fc;
         }
 
-        /* Contact CTA Box */
         .cta-box {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
             border: 1px solid var(--border);
@@ -380,7 +413,6 @@
             margin: 0 auto 1.75rem;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             color: var(--text-muted);
@@ -418,131 +450,172 @@
     </style>
 </head>
 <body>
+    <div id="root"></div>
 
-    <div class="container">
-      
-        <nav>
-            <a href="#" class="nav-logo">murun<span>.dev</span></a>
-            <div class="nav-links">
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="https://github.com/murun05" target="_blank">GitHub ↗</a>
-            </div>
-        </nav>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-        <header>
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Computer Engineering @ Gachon University
-            </div>
-            <h1>Otgonjargal Murun</h1>
-            <p class="subtitle">Software Developer & Data Science Enthusiast</p>
-            <p class="bio">
-                Passionate Computer Engineering undergraduate building accessible web applications, 
-                data-driven tools, and responsive digital experiences with clean, maintainable code.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn-primary">Explore Projects</a>
-                <a href="https://github.com/murun05" target="_blank" class="btn-secondary">GitHub Profile</a>
-            </div>
-        </header>
+    <script type="text/babel">
+        const skills = [
+            { title: 'HTML5 & CSS3', description: 'Semantic markup, responsive layouts, CSS Grid & Flexbox' },
+            { title: 'JavaScript (ES6+)', description: 'Interactive DOM manipulation, async APIs & modern logic' },
+            { title: 'React', description: 'Component-driven UI, reusable interfaces & stateful interactions' },
+            { title: 'Python & Data Science', description: 'Regression modeling, data analysis & statistical evaluation' },
+            { title: 'Web Accessibility', description: 'WCAG standards, ARIA compliance & Lighthouse auditing' },
+            { title: 'Git & Version Control', description: 'Branching workflows, pull requests & GitHub collaboration' }
+        ];
 
-        <section id="skills">
-            <div class="section-header">
-                <h2>Skills & Technologies</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-title">HTML5 & CSS3</div>
-                    <div class="skill-desc">Semantic markup, responsive layouts, CSS Grid & Flexbox</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">JavaScript (ES6+)</div>
-                    <div class="skill-desc">Interactive DOM manipulation, async APIs & modern logic</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">Python & Data Science</div>
-                    <div class="skill-desc">Regression modeling, data analysis & statistical evaluation</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">Machine Learning</div>
-                    <div class="skill-desc">Predictive algorithms, model training & feature engineering</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">Web Accessibility</div>
-                    <div class="skill-desc">WCAG standards, ARIA compliance & Lighthouse auditing</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">Git & Version Control</div>
-                    <div class="skill-desc">Branching workflows, pull requests & GitHub collaboration</div>
-                </div>
-            </div>
-        </section>
+        const stats = [
+            { value: '3+', label: 'Years Learning' },
+            { value: '12+', label: 'Projects' },
+            { value: '100%', label: 'Curiosity' }
+        ];
 
-        <section id="projects">
-            <div class="section-header">
-                <h2>Course & Featured Projects</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
+        const projects = [
+            {
+                folder: '/web-pro',
+                title: 'Web Programming Repository',
+                description: 'Web programming coursework and responsive applications built with pure HTML5, native CSS3, and WCAG-compliant accessible web standards.',
+                tags: ['HTML5', 'CSS3', 'JavaScript', 'Accessibility'],
+                link: 'https://github.com/murun05/web-pro'
+            },
+            {
+                folder: '/react-ui',
+                title: 'Interactive Portfolio Components',
+                description: 'A React-focused showcase of reusable UI modules, clean interfaces, and responsive component-driven design for a modern portfolio experience.',
+                tags: ['React', 'UI/UX', 'Components', 'JavaScript'],
+                link: 'https://github.com/murun05'
+            }
+        ];
+
+        function SkillCard({ title, description }) {
+            return (
+                <div className="skill-card">
+                    <div className="skill-title">{title}</div>
+                    <div className="skill-desc">{description}</div>
+                </div>
+            );
+        }
+
+        function StatCard({ value, label }) {
+            return (
+                <div className="stat-card">
+                    <span className="value">{value}</span>
+                    <span className="label">{label}</span>
+                </div>
+            );
+        }
+
+        function ProjectCard({ folder, title, description, tags, link }) {
+            return (
+                <div className="project-card">
                     <div>
-                        <div class="project-top">
-                            <span class="folder-icon">/web-pro</span>
+                        <div className="project-top">
+                            <span className="folder-icon">{folder}</span>
                         </div>
-                        <h3>Web Programming Repository</h3>
-                        <p>
-                            Web programming coursework and responsive applications built with pure HTML5, 
-                            native CSS3, and WCAG-compliant accessible web standards.
-                        </p>
-                        <div class="tech-tags">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
-                            <span>Accessibility</span>
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                        <div className="tech-tags">
+                            {tags.map((tag) => (
+                                <span key={tag}>{tag}</span>
+                            ))}
                         </div>
                     </div>
-                    <a href="https://github.com/murun05/web-pro" class="project-link" target="_blank">
-                        View Repository <span>&rarr;</span>
+                    <a href={link} className="project-link" target="_blank" rel="noreferrer">
+                        View Repository <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
+            );
+        }
 
-                <div class="project-card">
-                    <div>
-                        <div class="project-top">
-                            <span class="folder-icon">/project</span>
+        function App() {
+            return (
+                <div className="container">
+                    <nav>
+                        <a href="#" className="nav-logo">murun<span>.dev</span></a>
+                        <div className="nav-links">
+                            <a href="#skills">Skills</a>
+                            <a href="#projects">Projects</a>
+                            <a href="https://github.com/murun05" target="_blank" rel="noreferrer">GitHub ↗</a>
                         </div>
-                        <h3>Software Engineering Project</h3>
-                        <p>
-                            Core software engineering project repository containing modular source code, 
-                            structured documentation, and full implementation files.
+                    </nav>
+
+                    <header>
+                        <div className="status-badge">
+                            <span className="status-dot"></span>
+                            Computer Engineering @ Gachon University
+                        </div>
+                        <h1>Otgonjargal Murun</h1>
+                        <p className="subtitle">Software Developer & Data Science Enthusiast</p>
+                        <p className="bio">
+                            Passionate Computer Engineering undergraduate building accessible web applications,
+                            data-driven tools, and responsive digital experiences with clean, maintainable code.
                         </p>
-                        <div class="tech-tags">
-                            <span>Python</span>
-                            <span>Architecture</span>
-                            <span>Git</span>
+                        <div className="hero-actions">
+                            <a href="#projects" className="btn-primary">Explore Projects</a>
+                            <a href="https://github.com/murun05" target="_blank" rel="noreferrer" className="btn-secondary">GitHub Profile</a>
                         </div>
-                    </div>
-                    <a href="https://github.com/murun05/project" class="project-link" target="_blank">
-                        View Repository <span>&rarr;</span>
-                    </a>
+                    </header>
+
+                    <section id="skills">
+                        <div className="section-header">
+                            <h2>Skills & Technologies</h2>
+                            <div className="section-line"></div>
+                        </div>
+
+                        <div className="stats-grid">
+                            {stats.map((stat) => (
+                                <StatCard key={stat.label} value={stat.value} label={stat.label} />
+                            ))}
+                        </div>
+
+                        <div className="skills-grid">
+                            {skills.map((skill) => (
+                                <SkillCard
+                                    key={skill.title}
+                                    title={skill.title}
+                                    description={skill.description}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="projects">
+                        <div className="section-header">
+                            <h2>Course & Featured Projects</h2>
+                            <div className="section-line"></div>
+                        </div>
+                        <div className="projects-grid">
+                            {projects.map((project) => (
+                                <ProjectCard
+                                    key={project.title}
+                                    folder={project.folder}
+                                    title={project.title}
+                                    description={project.description}
+                                    tags={project.tags}
+                                    link={project.link}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="cta-box">
+                        <h2>Let's Connect & Build Together</h2>
+                        <p>
+                            Always open to collaborating on software engineering projects, web development, or data science coursework.
+                        </p>
+                        <a href="https://github.com/murun05" target="_blank" rel="noreferrer" className="btn-primary">Follow on GitHub</a>
+                    </section>
+
+                    <footer>
+                        <p>&copy; 2026 Otgonjargal Murun &bull; Built for Git & Version Control Course</p>
+                    </footer>
                 </div>
-            </div>
-        </section>
+            );
+        }
 
-        <section class="cta-box">
-            <h2>Let's Connect & Build Together</h2>
-            <p>
-                Always open to collaborating on software engineering projects, web development, or data science coursework.
-            </p>
-            <a href="https://github.com/murun05" target="_blank" class="btn-primary">Follow on GitHub</a>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 Otgonjargal Murun &bull; Built for Git & Version Control Course</p>
-        </footer>
-    </div>
-
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
 </body>
 </html>
